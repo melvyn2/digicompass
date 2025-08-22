@@ -1,0 +1,57 @@
+[package]
+name = "digicompass"
+version = "0.1.0"
+edition = "2024"
+
+[[bin]]
+name = "digicompass"
+test = false
+doctest = false
+bench = false
+
+[profile.dev]
+opt-level = "s"
+lto = true
+debug = true
+
+[profile.release]
+opt-level = "s"
+codegen-units = 1
+lto = true
+strip = true
+
+[dependencies]
+adafruit-feather-rp2040-adalogger = { path = "rp-hal-boards/boards/adafruit-feather-rp2040-adalogger", features = ["rp2040-e5"] }
+bno080 = { path = "bno080", features = ["defmt"] }
+cortex-m = "0.7"
+cortex-m-rt = "0.7"
+critical-section = "1.2"
+defmt = { version = "1.0" , features = ["alloc"]}
+embedded-alloc = "0.6"
+embedded-graphics = "0.8"
+embedded-hal = "1.0"
+embedded-hal-bus = "0.3"
+embedded-io = "0.6"
+embedded-sdmmc = { git = "https://github.com/rust-embedded-community/embedded-sdmmc-rs.git", default-features = false, features = ["defmt-log"] }
+fugit = "0.3"
+heapless = "0.9"
+hifijson = { version = "0.2", default-features = false, features = ["alloc"]}
+libm = "0.2.11"
+# Keep old version to match ahrs
+nalgebra = { version = "0.34", default-features = false, features = ["libm-force"] }
+nb = "1.1"
+postcard = {version = "1.1", features = ["embedded-io-06", "alloc"] }
+rstar = { version = "0.12", features = ["serde"] }
+sh1106 = "0.5"
+smart-leds = "0.4"
+rp2040-hal = { version = "0.11", features = ["rp2040-e5", "defmt"] }
+thiserror = { version = "2.0", default-features = false }
+uom = { git = "https://github.com/red-hara/uom.git", branch = "feature/libm-dependency", default-features = false, features = ["autoconvert", "f32", "f64", "libm", "serde", "si"] }
+usb-device = "0.3"
+usbd-serial = "0.2"
+world_magnetic_model = "0.4"
+ws2812-pio = { path = "ws2812-pio-rs" }
+serde = { version = "1.0", default-features = false, features = ["derive"] }
+
+[patch.crates-io]
+uom = { git = "https://github.com/red-hara/uom.git", branch = "feature/libm-dependency" }
