@@ -1,0 +1,4 @@
+This is a somewhat-functioning prototype of a "digital compass" that points the user towards the nearest physical location,
+from a GeoJSON list of locations on a microSD card.
+The physical design is slightly documented in the Fritzing sketch.
+GeoJSON files can be exported from overpass-turbo.eu conveniently.
